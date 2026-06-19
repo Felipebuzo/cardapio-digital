@@ -31,6 +31,7 @@ async function getByCategory(req, res) {
 // Criar produto
 async function create(req, res) {
   try {
+   
     const { name, description, price, categoryId } = req.body
     const image = req.file ? req.file.filename : null
 
