@@ -10,7 +10,9 @@ const productRoutes = require('./routes/productRoutes')
 const app = express()
 
 // Segurança
-app.use(helmet())
+app.use(helmet({
+  crossOriginResourcePolicy: { policy: 'cross-origin' }
+}))
 app.use(cors({
   origin: process.env.FRONTEND_URL || '*',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
