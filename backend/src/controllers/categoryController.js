@@ -8,6 +8,7 @@ async function index(req, res) {
     })
     return res.json(categories)
   } catch (error) {
+    console.error('Erro ao buscar categorias:', error)
     return res.status(500).json({ error: 'Erro ao buscar categorias.' })
   }
 }
@@ -27,6 +28,7 @@ async function create(req, res) {
 
     return res.status(201).json(category)
   } catch (error) {
+    console.error('Erro ao criar categoria:', error)
     return res.status(500).json({ error: 'Erro ao criar categoria.' })
   }
 }
@@ -44,6 +46,7 @@ async function update(req, res) {
 
     return res.json(category)
   } catch (error) {
+    console.error('Erro ao atualizar categoria:', error)
     return res.status(500).json({ error: 'Erro ao atualizar categoria.' })
   }
 }
@@ -59,6 +62,7 @@ async function remove(req, res) {
 
     return res.status(204).send()
   } catch (error) {
+    console.error('Erro ao deletar categoria:', error)
     return res.status(500).json({ error: 'Erro ao deletar categoria.' })
   }
 }
