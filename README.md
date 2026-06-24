@@ -2,7 +2,7 @@
 
 Sistema fullstack de cardápio digital com painel administrativo, desenvolvido como projeto de portfólio para vaga de desenvolvedor fullstack júnior.
 
-**🔗 Acesse o projeto:**
+** Acesse o projeto:**
 - Cardápio (público): [cardapio-digital-sandy.vercel.app](https://cardapio-digital-sandy.vercel.app)
 - API (backend): [cardapio-digital-production-b81d.up.railway.app](https://cardapio-digital-production-b81d.up.railway.app)
 
@@ -11,10 +11,10 @@ Sistema fullstack de cardápio digital com painel administrativo, desenvolvido c
 ##  Screenshots
 
 ### Cardápio público
-![foto do cardapio](cardapio.png)
+![Cardápio público](cardapio.png)
 
 ### Painel administrativo
-![foto da página de administrador](admin.png)
+![Painel administrativo](admin.png)
 
 ---
 
@@ -53,33 +53,17 @@ O Cardápio Digital permite que um estabelecimento cadastre categorias e produto
 - **Railway** — hospedagem do backend e do banco de dados MySQL
 - **Vercel** — hospedagem do frontend
 
+---
 
+## Como o projeto está organizado
 
-##  Arquitetura
+O projeto é dividido em duas pastas principais: `backend` e `frontend`.
 
+Dentro do `backend`, segui o padrão que aprendi no curso de Node que fiz: rotas (`routes`) chamando controllers (`controllers`), com o Prisma cuidando do banco. Tem também uma pasta de `middlewares` (autenticação) e `uploads`, onde ficam as imagens enviadas.
 
-cardapio-digital/
-├── backend/
-│   ├── prisma/              # Schema e migrations do banco
-│   ├── src/
-│   │   ├── config/          # Configuração do Prisma Client
-│   │   ├── controllers/     # Lógica das rotas (categorias, produtos, auth)
-│   │   ├── middlewares/     # Autenticação JWT, etc.
-│   │   ├── routes/          # Definição das rotas da API
-│   │   ├── uploads/         # Imagens enviadas (Multer)
-│   │   └── server.js        # Ponto de entrada da aplicação
-│   └── railway.json         # Configuração de build/deploy no Railway
-│
-└── frontend/
-    ├── src/
-    │   ├── components/      # Componentes reutilizáveis (ex: RotaProtegida)
-    │   ├── pages/            # Páginas (Cardápio, Login, Admin)
-    │   ├── services/         # Configuração do Axios e autenticação
-    │   └── App.jsx           # Rotas da aplicação
-    └── vercel.json           # Configuração de rewrite para SPA
+No `frontend`, as páginas ficam em `pages` (Cardápio, Login, Admin), os componentes que se repetem em `components`, e a configuração do Axios em `services`.
 
-
-
+---
 
 ##  Como rodar localmente
 
