@@ -1,15 +1,13 @@
 const multer = require('multer')
-const path = require('path')
+const { CloudinaryStorage } = require('multer-storage-cloudinary')
+const cloudinary = require('./cloudinary')
 
-// Configuração de onde e como salvar os arquivos
-const storage = multer.diskStorage({
-  destination: (req, file, callback) => {
-    callback(null, path.resolve(__dirname, '..', 'uploads'))
-  },
-  filename: (req, file, callback) => {
-    // Gera um nome único pra evitar arquivos com o mesmo nome se sobrescreverem
-    const uniqueName = `${Date.now()}-${file.originalname}`
-    callback(null, uniqueName)
+// Configuração de onde salvar os arquivos (agora no Cloudinary, não no disco)
+const storage = new CloudinaryStorage({
+  cloudinary,
+  params: {
+    folder: 'cardapio-digital', // pasta dentro do Cloudinary onde as imagens ficam organizadas
+    allowed_formats: ['jpg', 'jpeg', 'png', 'webp']
   }
 })
 
