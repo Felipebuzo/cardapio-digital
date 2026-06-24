@@ -93,7 +93,7 @@ function Cardapio() {
                   >
                     {product.image ? (
                       <img
-                        src={`http://localhost:3333/uploads/${product.image}`}
+                        src={`${import.meta.env.VITE_API_URL?.replace('/api', '') || 'http://localhost:3333'}/uploads/${product.image}`}
                         alt={product.name}
                         className="w-full h-48 object-cover"
                       />
