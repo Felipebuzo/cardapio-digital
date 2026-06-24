@@ -8,6 +8,7 @@ const categoryRoutes = require('./routes/categoryRoutes')
 const productRoutes = require('./routes/productRoutes')
 
 const app = express()
+app.set('trust proxy', 1)
 
 // Segurança
 app.use(helmet({
