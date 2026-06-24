@@ -1,4 +1,4 @@
-# 🍕 Cardápio Digital
+#  Cardápio Digital
 
 Sistema fullstack de cardápio digital com painel administrativo, desenvolvido como projeto de portfólio para vaga de desenvolvedor fullstack júnior.
 
@@ -8,7 +8,7 @@ Sistema fullstack de cardápio digital com painel administrativo, desenvolvido c
 
 ---
 
-## 📸 Screenshots
+##  Screenshots
 
 ### Cardápio público
 ![foto do cardapio](cardapio.png)
@@ -18,7 +18,7 @@ Sistema fullstack de cardápio digital com painel administrativo, desenvolvido c
 
 ---
 
-## 📋 Sobre o projeto
+##  Sobre o projeto
 
 O Cardápio Digital permite que um estabelecimento cadastre categorias e produtos (com nome, descrição, preço e imagem) através de um painel administrativo protegido por autenticação, enquanto os clientes visualizam o cardápio em uma página pública, organizada por categoria.
 
@@ -33,7 +33,7 @@ O Cardápio Digital permite que um estabelecimento cadastre categorias e produto
 
 ---
 
-## 🛠️ Tecnologias utilizadas
+##  Tecnologias utilizadas
 
 ### Backend
 - **Node.js** + **Express** — servidor e rotas da API
@@ -53,11 +53,11 @@ O Cardápio Digital permite que um estabelecimento cadastre categorias e produto
 - **Railway** — hospedagem do backend e do banco de dados MySQL
 - **Vercel** — hospedagem do frontend
 
----
 
-## 🏗️ Arquitetura
 
-```
+##  Arquitetura
+
+
 cardapio-digital/
 ├── backend/
 │   ├── prisma/              # Schema e migrations do banco
@@ -77,11 +77,11 @@ cardapio-digital/
     │   ├── services/         # Configuração do Axios e autenticação
     │   └── App.jsx           # Rotas da aplicação
     └── vercel.json           # Configuração de rewrite para SPA
-```
 
----
 
-## 🚀 Como rodar localmente
+
+
+##  Como rodar localmente
 
 ### Pré-requisitos
 - Node.js 18+
@@ -138,7 +138,7 @@ Depois, acesse `http://localhost:5173/admin/login` para entrar no painel.
 
 ---
 
-## 🧠 Decisões técnicas e aprendizados
+##  Decisões técnicas e aprendizados
 
 Durante o desenvolvimento, alguns problemas reais precisaram ser resolvidos — e ficam registrados aqui porque fazem parte do aprendizado:
 
@@ -150,12 +150,12 @@ Durante o desenvolvimento, alguns problemas reais precisaram ser resolvidos — 
 
 ---
 
-## 🤖 Sobre o uso de IA no desenvolvimento
+##  Sobre o uso de IA no desenvolvimento
 
 Parte do desenvolvimento contou com apoio de IA (Claude) como ferramenta de estudo e par de programação — similar ao uso de documentação ou fóruns, mas de forma interativa. A IA foi usada para entender conceitos, revisar lógica e debugar problemas, mas toda a leitura de erros, decisões de arquitetura e escrita final do código foram conduzidas e validadas por mim.
 
 ---
 
-## 📄 Licença
+##  Licença
 
 Projeto desenvolvido para fins de estudo e portfólio.
