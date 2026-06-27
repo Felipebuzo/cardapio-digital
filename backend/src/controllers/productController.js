@@ -87,7 +87,7 @@ async function update(req, res) {
 
     return res.json(product)
   } catch (error) {
-    console.error('Erro ao atualizar produto:', error)
+    console.error('Erro ao atualizar produto:', error.message, error.stack)
     return res.status(500).json({ error: 'Erro ao atualizar produto.' })
   }
 }
