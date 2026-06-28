@@ -20,13 +20,13 @@ Sistema fullstack de cardápio digital com painel administrativo, desenvolvido c
 
 ##  Sobre o projeto
 
-O Cardápio Digital permite que um estabelecimento cadastre categorias e produtos (com nome, descrição, preço e imagem) através de um painel administrativo protegido por autenticação, enquanto os clientes visualizam o cardápio em uma página pública, organizada por categoria.
+O Cardápio Digital permite que um estabelecimento cadastre categorias e produtos (com nome, descrição e preço) através de um painel administrativo protegido por autenticação, enquanto os clientes visualizam o cardápio em uma página pública, organizada por categoria.
 
 ### Principais funcionalidades
 
 - ✅ Autenticação com JWT (login do administrador)
 - ✅ CRUD completo de categorias
-- ✅ CRUD completo de produtos, com upload de imagem
+- ✅ CRUD completo de produtos
 - ✅ Listagem pública do cardápio, filtrada por categoria
 - ✅ Proteção de rotas no frontend (painel admin acessível apenas autenticado)
 - ✅ API REST documentada e organizada em camadas (Controller-Service-Repository)
@@ -40,7 +40,6 @@ O Cardápio Digital permite que um estabelecimento cadastre categorias e produto
 - **Prisma ORM** + **MySQL** — modelagem e persistência de dados
 - **JWT** (`jsonwebtoken`) — autenticação
 - **bcryptjs** — hash de senhas
-- **Multer** — upload de imagens
 - **Helmet** + **express-rate-limit** + **CORS** — segurança da API
 
 ### Frontend
@@ -59,7 +58,7 @@ O Cardápio Digital permite que um estabelecimento cadastre categorias e produto
 
 O projeto é dividido em duas pastas principais: `backend` e `frontend`.
 
-Dentro do `backend`, segui o padrão que aprendi no curso de Node que fiz: rotas (`routes`) chamando controllers (`controllers`), com o Prisma cuidando do banco. Tem também uma pasta de `middlewares` (autenticação) e `uploads`, onde ficam as imagens enviadas.
+Dentro do `backend`, segui o padrão que aprendi no curso de Node que fiz: rotas (`routes`) chamando controllers (`controllers`), com o Prisma cuidando do banco. Tem também uma pasta de `middlewares`, responsável pela autenticação.
 
 No `frontend`, as páginas ficam em `pages` (Cardápio, Login, Admin), os componentes que se repetem em `components`, e a configuração do Axios em `services`.
 
@@ -129,8 +128,8 @@ Durante o desenvolvimento, alguns problemas reais precisaram ser resolvidos — 
 - **Migrations em produção**: o banco do Railway precisa que as migrations do Prisma sejam executadas no deploy (`npx prisma migrate deploy`), não apenas localmente. Isso foi configurado no `startCommand` do `railway.json`.
 - **`trust proxy` no Express**: hospedagens como o Railway colocam a aplicação atrás de um proxy reverso. Sem `app.set('trust proxy', 1)`, bibliotecas como `express-rate-limit` quebram em produção ao identificar o IP do cliente.
 - **Roteamento de SPA na Vercel**: rotas do React Router (como `/admin/login`) retornavam 404 em produção, pois a Vercel tentava localizar arquivos físicos. Resolvido com um `vercel.json` com regra de rewrite para `index.html`.
-- **Variáveis de ambiente para URLs**: tanto a URL da API quanto a URL das imagens precisaram migrar de valores fixos (`localhost`) para variáveis de ambiente (`VITE_API_URL`), permitindo que o mesmo código funcione em desenvolvimento e produção.
-- **Armazenamento de imagens**: o Railway utiliza um sistema de arquivos efêmero — uploads feitos via Multer não persistem entre deploys. Para um ambiente de produção real, a evolução natural seria migrar para um serviço de armazenamento externo (ex: Cloudinary ou AWS S3).
+- **Variáveis de ambiente para URLs**: a URL da API precisou migrar de um valor fixo (`localhost`) para uma variável de ambiente (`VITE_API_URL`), permitindo que o mesmo código funcione em desenvolvimento e produção.
+- **Upload de imagem: o que decidi tirar e por quê**: o projeto inicialmente contava com upload de imagem dos produtos via Multer + Cloudinary. Depois de resolver o problema de filesystem efêmero do Railway (uploads locais não persistem entre deploys) migrando para um serviço externo, surgiu um novo erro 500 na integração com o Cloudinary em produção. Ao investigar, decidi remover o upload de imagem do escopo do projeto: o esforço de depurar e manter uma integração externa não agregava ao que eu queria demonstrar nesse projeto — um CRUD completo, com autenticação e arquitetura em camadas bem feitos. Ficou registrada aqui essa decisão porque avaliar custo x benefício de uma funcionalidade também é trabalho de desenvolvedor, não só escrever código.
 
 ---
 
