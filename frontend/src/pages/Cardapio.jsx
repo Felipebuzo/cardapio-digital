@@ -91,18 +91,6 @@ function Cardapio() {
                     key={product.id}
                     className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow"
                   >
-                    {product.image ? (
-                      <img
-                        src={product.image}
-                        alt={product.name}
-                        className="w-full h-48 object-cover"
-                      />
-                    ) : (
-                      <div className="w-full h-48 bg-orange-100 flex items-center justify-center">
-                        <span className="text-orange-300 text-sm">Sem imagem</span>
-                      </div>
-                    )}
-
                     <div className="p-4">
                       <h3 className="font-bold text-lg text-gray-800">
                         {product.name}

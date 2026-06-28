@@ -8,7 +8,6 @@ function GerenciarProdutos() {
   const [description, setDescription] = useState('')
   const [price, setPrice] = useState('')
   const [categoryId, setCategoryId] = useState('')
-  const [image, setImage] = useState(null)
   const [editingId, setEditingId] = useState(null)
   const [error, setError] = useState('')
 
@@ -40,7 +39,6 @@ function GerenciarProdutos() {
     setDescription('')
     setPrice('')
     setCategoryId('')
-    setImage(null)
     setEditingId(null)
   }
 
@@ -48,20 +46,18 @@ function GerenciarProdutos() {
     event.preventDefault()
     setError('')
 
-    const formData = new FormData()
-    formData.append('name', name)
-    formData.append('description', description)
-    formData.append('price', price)
-    formData.append('categoryId', categoryId)
-    if (image) {
-      formData.append('image', image)
+    const payload = {
+      name,
+      description,
+      price,
+      categoryId
     }
 
     try {
       if (editingId) {
-        await api.put(`/products/${editingId}`, formData)
+        await api.put(`/products/${editingId}`, payload)
       } else {
-        await api.post('/products', formData)
+        await api.post('/products', payload)
       }
 
       clearForm()
@@ -137,13 +133,6 @@ function GerenciarProdutos() {
             ))}
           </select>
         </div>
-
-        <input
-          type="file"
-          accept="image/jpeg,image/png,image/webp"
-          onChange={(e) => setImage(e.target.files[0])}
-          className="border border-gray-300 rounded-lg px-3 py-2"
-        />
 
         <div className="flex gap-2">
           <button

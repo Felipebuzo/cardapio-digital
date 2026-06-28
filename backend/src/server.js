@@ -33,7 +33,6 @@ app.use(express.json())
 app.use('/api/auth', authRoutes)
 app.use('/api/categories', categoryRoutes)
 app.use('/api/products', productRoutes)
-app.use('/uploads', express.static('src/uploads'))
 
 // Rota de teste
 app.get('/', (req, res) => {

@@ -33,10 +33,7 @@ async function getByCategory(req, res) {
 // Criar produto
 async function create(req, res) {
   try {
-   
     const { name, description, price, categoryId } = req.body
-    // Com o Cloudinary, req.file.path já vem com a URL completa da imagem
-    const image = req.file ? req.file.path : null
 
     if (!name || !price || !categoryId) {
       return res.status(400).json({ error: 'Nome, preço e categoria são obrigatórios.' })
@@ -47,7 +44,6 @@ async function create(req, res) {
         name,
         description,
         price: parseFloat(price),
-        image,
         categoryId: Number(categoryId)
       }
     })
@@ -64,8 +60,6 @@ async function update(req, res) {
   try {
     const { id } = req.params
     const { name, description, price, categoryId, available } = req.body
-    // Com o Cloudinary, req.file.path já vem com a URL completa da imagem
-    const image = req.file ? req.file.path : undefined
 
     const data = {
       name,
@@ -77,8 +71,6 @@ async function update(req, res) {
 
     // Remove campos indefinidos para não sobrescrever com undefined
     Object.keys(data).forEach(key => data[key] === undefined && delete data[key])
-
-    if (image) data.image = image
 
     const product = await prisma.product.update({
       where: { id: Number(id) },
